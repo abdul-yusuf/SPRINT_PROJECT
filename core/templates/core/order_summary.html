@@ -3,7 +3,17 @@
 {% block content %}
     {% if object %}
         <ul>
-        <li>{{object.items}}</li>
+            {% for item in object.items.all %}
+                <li>
+                    <p>item: {{item.item.title}}</p>
+                    <p>item: {{item.quantity}}</p>
+                    <p>price: {{item.get_final_price}}</p>
+                    
+                </li>
+            {% endfor %}
+            <p>{{object.get_total}}</p>
+            <a class='' href='/checkout/'>Proceed to checkout</a>
+            <a class='' href='/'>Continue shopping</a>
     </ul>
     {% else %}
         <p>You have no item in Cart</p>

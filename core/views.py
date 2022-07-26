@@ -94,7 +94,7 @@ class order_summary(LoginRequiredMixin, View):
             context = {
                 'object': order
             }
-            print(order.items)
+            # print(order.items.all())
             return render(self.request, 'core/order_summary.html', context)
         except ObjectDoesNotExist:
             messages.warning(self.request, "You do not have an active order")
