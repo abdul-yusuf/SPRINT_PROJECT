@@ -1,0 +1,58 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+body {
+  background: url(/static/img/login_page_pic.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+form {
+  opacity: 0.9;
+  margin: 100px 30px 30px 400px;
+  background-color: aliceblue;
+  width: 350px;
+  padding: 20px;
+  border-radius: 30px;
+}
+.h4 {
+  text-align: center;
+}
+.form-group.last {
+  margin-bottom: 0px;
+  background-color: aliceblue;
+}
+.fa {
+  padding-left: 10px;
+}
+.form-control {
+  border: 0px;
+  border-bottom: 10px;
+}
+input {
+  margin-top: 40px;
+}
+.btn {
+  margin-top: 20px;
+}
+.sign-up {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px;
+}
+a:hover,
+a:visited,
+a:link,
+a:active {
+  text-decoration: none;
+  color: black;
+}
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}

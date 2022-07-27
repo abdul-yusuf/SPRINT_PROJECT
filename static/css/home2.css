@@ -1,0 +1,104 @@
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
+  color: #333;
+  text-shadow: none; /* Prevent inheritance from `body` */
+}
+.container-fluid {
+  background: url(/static/img/home-pic.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100vh;
+  opacity: 0.7;
+}
+.cover-container {
+  max-width: 42em;
+}
+.nav-masthead .nav-link + .nav-link {
+  margin-left: 1rem;
+}
+
+.nav-masthead .active {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+.navbar-nav {
+  text-align: center;
+  margin-left: 15rem;
+  text-transform: uppercase;
+}
+.bg-light {
+  background-color: transparent !important;
+}
+a {
+  color: black;
+  font-weight: 800;
+}
+.navbar-nav .nav-link {
+  color: black;
+  font-size: 18px;
+  background-color: white;
+  opacity: 0.9;
+}
+.fw-bold {
+  text-align: center;
+  padding: 10px;
+  margin: 45px 0px 0px 0px;
+  color: black;
+}
+.h3 {
+  text-align: center;
+  padding: 10px;
+  margin: 0px 0px 0px 0px;
+  color: black;
+}
+.img-box {
+  display: flex;
+}
+.home_img {
+  border-radius: 100%;
+  margin-left: 0px;
+  width: 25rem;
+  height: 20rem;
+}
+.home_img1 {
+  margin-top: 5px;
+  width: 9rem;
+  height: 10rem;
+  border-bottom-left-radius: 510px;
+  border-bottom-right-radius: 510px;
+  transform: rotate(0deg);
+}
+.logo_img1 {
+  width: 60px;
+  height: 50px;
+}
+.paragraph_text {
+  text-align: center;
+  font-weight: 400;
+  font-size: 20px;
+  color: black;
+  margin-top: 8x;
+}
+.fab {
+  padding: 3px 8px;
+  font-size: 25px;
+}
+.fa-whatsapp {
+  color: green;
+}
+.nav-link {
+  color: white;
+  font-weight: bolder;
+}
+.nav-link:hover {
+  color: black;
+}
+.fa-twitter {
+  color: blue;
+}
+.fa-facebook-f {
+  color: navy;
+}

@@ -8,7 +8,9 @@
 
 <p>{{ item.price }}</p>
 
-<a href="{{ item.get_add_to_cart_url }}">Add to Cart</a>
+<li><a href="{{ item.get_add_to_cart_url }}">Add to Cart</a></li>
+<li><a href="{{item.item.get_remove_from_cart_url}}">Remove Item From Cart</a></li>
+
 
 
 {% endblock %}

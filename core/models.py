@@ -1,4 +1,6 @@
 from pyexpat import model
+from turtle import title
+from unicodedata import category
 from django.db import models
 from django.db.models.signals import post_save
 from django.conf import settings
@@ -31,12 +33,26 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 
+class Category(models.Model):
+    name = models.CharField(max_length=50)
+  
+    @staticmethod
+    def get_all_categories(self):
+        # return Category.objects.all()
+        return reverse("core:category",kwargs={
+            'category': self.name
+        })
+  
+    def __str__(self):
+        return self.name
+
+
 
 class Item(models.Model):
     title = models.CharField(max_length=100)
     price = models.DecimalField(decimal_places=2, max_digits=10)
     discount_price = models.DecimalField(blank=True, null=True, decimal_places=2, max_digits=10)
-    # category = models.CharField(choices=CATEGORY_CHOICES, max_length=2)
+    category = models.ManyToManyField(Category)
     # label = models.CharField(choices=LABEL_CHOICES, max_length=1)
     slug = models.SlugField(db_index=True, allow_unicode=True)
     description = models.TextField()
