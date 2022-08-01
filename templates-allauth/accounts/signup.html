@@ -8,134 +8,123 @@
     <div class="container">
       <div class="row">
         <div class="col-md-4 col-md-offset-7">
-          <form action='' method="post">
-            {% csrf_token %}
-
-
+          <form>
             <h4 class="h4 mb-3 fw-normal">
               Customer login<i class="fa fa-user-plus" aria-hidden="true"></i>
             </h4>
             <hr />
             <div class="form-box">
               <div class="mb-3">
-                <label for="id_firstname" class="text-label">Firstname:</label>
-                <input
-                  class="form-control"
-                  id="id_firstname"
-                  aria-describedby="emailHelp"
-                  type="text"
-                />
-              </div>
-              <div class="mb-3">
-                <label for="id_lastname">Lastname:</label>
-                <input
-                  class="form-control"
-                  id="id_lastname"
-                  aria-describedby="emailHelp"
-                  type="text"
-
-                />
-              </div>
-            </div>
-            <div class="form-box">
-              <div class="mb-3">
-                <label for="id_dob" class="text-label"
-                  >Date of birth:</label
-                >
-                <input
-                  class="form-control"
-                  id="id_dob"
-                  type="date"
-                  aria-describedby="emailHelp"
-                />
-              </div>
-              <div class="mb-3">
-                <label for="id_phone_no">Phone No:</label>
-                <input
-                  class="form-control"
-                  id="id_phone_no"
-                  type="float"
-                  aria-describedby="emailHelp"
-                />
-              </div>
-            </div>
-            <div class="form-box">
-              <div class="mb-3">
-                <label for="id_email" class="text-label">Email:</label>
+                <label for="floatingInput" class="text-label">Firstname:</label>
                 <input
                   type="email"
                   class="form-control"
-                  id="-d_email"
+                  id="exampleInputEmail1"
                   aria-describedby="emailHelp"
-                  name = 'email'
                 />
               </div>
               <div class="mb-3">
-                <label for="id_username">Username:</label>
+                <label for="floatingInput">Lastname:</label>
                 <input
+                  type="email"
                   class="form-control"
-                  id="id_username"
+                  id="exampleInputEmail1"
                   aria-describedby="emailHelp"
-                  name="username"
-                  type="text"
                 />
               </div>
             </div>
             <div class="form-box">
               <div class="mb-3">
-                <label for="id_password1" class="text-label">Password:</label>
+                <label for="floatingInput" class="text-label"
+                  >Date of birth:</label
+                >
                 <input
-                  type="password"
+                  type="email"
                   class="form-control"
-                  id="id_password1"
-                  name="password1"
+                  id="exampleInputEmail1"
+                  aria-describedby="emailHelp"
                 />
               </div>
               <div class="mb-3">
-                <label for="id_password2">Comfirm Password</label>
+                <label for="floatingInput">Phone No:</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="exampleInputEmail1"
+                  aria-describedby="emailHelp"
+                />
+              </div>
+            </div>
+            <div class="form-box">
+              <div class="mb-3">
+                <label for="floatingInput" class="text-label">Email:</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="exampleInputEmail1"
+                  aria-describedby="emailHelp"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="floatingInput">Username:</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="exampleInputEmail1"
+                  aria-describedby="emailHelp"
+                />
+              </div>
+            </div>
+            <div class="form-box">
+              <div class="mb-3">
+                <label for="floatingInput" class="text-label">Password:</label>
                 <input
                   type="password"
                   class="form-control"
-                  id="id_password2"
-                  name = 'password2'
+                  id="exampleInputPassword1"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="floatingInput">Comfirm Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="exampleInputPassword1"
                 />
               </div>
             </div>
 
             <div class="sign-up">
               <div class="form-check">
-                <label class="form-check-label" for="id_is_staff">
+                <label class="form-check-label" for="flexCheckIndeterminate">
                   Staff
                 </label>
                 <input
                   class="form-check-input"
                   type="checkbox"
-                  value="True"
-                  id="id_is_staff"
-                  name = 'is_staff'
+                  value=""
+                  id="flexCheckIndeterminate"
                 />
               </div>
               <div class="form-check">
-                <label class="form-check-label" for="id_is_student">
+                <label class="form-check-label" for="flexCheckIndeterminate">
                   Student
                 </label>
                 <input
                   class="form-check-input"
                   type="checkbox"
-                  value="True"
-                  id="id_is_student"
-                  name = "is_student"
+                  value=""
+                  id="flexCheckIndeterminate"
                 />
               </div>
               <div class="form-check">
-                <label class="form-check-label" for="id_is_others">
+                <label class="form-check-label" for="flexCheckIndeterminate">
                   Others
                   <input
                     class="form-check-input"
                     type="checkbox"
-                    value="True"
-                    id="id_is_others"
-                    name = "is_others"
+                    value=""
+                    id="flexCheckIndeterminate"
                   />
                 </label>
               </div>
@@ -145,11 +134,16 @@
                 <label for="inputZip" class="form-label"
                   >Satff | Student | Others ID</label
                 >
-                <input type="text" class="form-control" id="inputZip" name= "school_id" />
+                <input type="text" class="form-control" id="inputZip" />
               </div>
               <div class="d-grid gap-2 col-2 mx-auto">
                 <button type="submit" class="btn btn-success">
-                  Sign Up 
+                  <a
+                    class="nav-link active"
+                    aria-current="page"
+                    href="dashboard.html"
+                    >Sign Up</a
+                  >
                 </button>
               </div>
             </div>

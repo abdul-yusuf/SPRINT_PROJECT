@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}" />
+{% endblock head %}
+{% block content %}
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="dashboard.html"
+        ><img src="{% static 'img/logo_pic 2.jpg'%}" alt="" class="logo_img1"
+      /></a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div
+        class="collapse navbar-collapse text-center"
+        id="navbarSupportedContent"
+      >
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Category</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">ABOUT</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#"
+              >DASHBOARD</a
+            >
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#"
+                ><i class="fa fa-bars" aria-hidden="true"></i
+              ></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#"
+                ><i class="fa fa-heart" aria-hidden="true"></i
+              ></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#"
+                ><i class="fab fa-twitter"></i
+              ></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#"
+                ><i class="fab fa-whatsapp"></i
+              ></a>
+            </li>
+          </ul>
+        </form>
+      </div>
+    </div>
+  </nav>
+<ul>
+    <div class="d-flex justify-content-evenly">
+    {% for categories in object %}
+    <div class="p-2">
+        <p class="food_text">{{categories.name}}</p>
+        <img src="{% static 'img/food2.jpg'%}" alt="food" class="grid_image" />
+        <button class="food_button"><a href='{{categories.get_all_categories}}'>View</a></button>
+      </div>
+    {% endfor %}
+</div>
+</ul>
+{% endblock content %}

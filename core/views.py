@@ -1,3 +1,4 @@
+from unicodedata import category
 from django.utils import timezone
 from multiprocessing import context
 import random
@@ -17,6 +18,35 @@ from django.contrib.auth.forms import AuthenticationForm #add this
 
 # Create your views here.
 from . import models
+
+
+
+class order_summary(LoginRequiredMixin, View):
+    def get(self, *args, **kwargs):
+        try:
+            order = models.Order.objects.get(user=self.request.user, ordered=False)
+            context = {
+                'object': order
+            }
+            # print(order.items.all())
+            return render(self.request, 'core/order_summary.html', context)
+        except ObjectDoesNotExist:
+            messages.warning(self.request, "You do not have an active order")
+            return redirect("/")
+
+
+def category_view(request):
+    context = {
+        'object': models.Category.objects.all()
+    }
+    return render(request, "categories.html", context)
+
+def category_detail_view(request, slug):
+    category_id =slug
+    context = {
+        'object': models.Item.objects.filter(category=category_id)
+    }
+    return render(request, "categories_detail.html", context)
 
 
 def products(request):
@@ -91,18 +121,6 @@ def add_to_cart(request, slug):
         messages.info(request, "This item was added to your cart.")
         return redirect('core:item-view', slug=slug)
 
-class order_summary(LoginRequiredMixin, View):
-    def get(self, *args, **kwargs):
-        try:
-            order = models.Order.objects.get(user=self.request.user, ordered=False)
-            context = {
-                'object': order
-            }
-            # print(order.items.all())
-            return render(self.request, 'core/order_summary.html', context)
-        except ObjectDoesNotExist:
-            messages.warning(self.request, "You do not have an active order")
-            return redirect("/")
 
 # @login_required
 # def order_summary(self):
@@ -176,33 +194,42 @@ def remove_single_item_from_cart(request, slug):
         return redirect("core:product", slug=slug)
 
 def register_request(request):
-	if request.method == "POST":
-		form = NewUserForm(request.POST)
-		if form.is_valid():
-			user = form.save()
-			login(request, user)
-			messages.success(request, "Registration successful." )
-			return redirect("main:homepage")
-		messages.error(request, "Unsuccessful registration. Invalid information.")
-	form = NewUserForm()
-	return render (request=request, template_name="register.html", context={"register_form":form})
+    if request.method == "POST":
+        print(request.POST)
+        form = NewUserForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            logged = login(request, user)
+            print(request.user, dir(logged) )
+
+            user_profile = models.UserProfile.objects.get(user=request.user)
+            print(user_profile)
+            user_profile.school_id = form.cleaned_data.get['school_id']
+            user_profile.is_student = form.cleaned_data.get['is_student']
+            user_profile.save()
+            messages.success(request, "Registration successful." )
+            return redirect("/")
+        messages.error(request, "Unsuccessful registration. Invalid information.")
+    form = NewUserForm()
+    return render (request=request, template_name="register.html", context={"form":form})
 
 
 
 def login_request(request):
-	if request.method == "POST":
-		form = AuthenticationForm(request, data=request.POST)
-		if form.is_valid():
-			username = form.cleaned_data.get('username')
-			password = form.cleaned_data.get('password')
-			user = authenticate(username=username, password=password)
-			if user is not None:
-				login(request, user)
-				messages.info(request, f"You are now logged in as {username}.")
-				return redirect("main:homepage")
-			else:
-				messages.error(request,"Invalid username or password.")
-		else:
-			messages.error(request,"Invalid username or password.")
-	form = AuthenticationForm()
-	return render(request=request, template_name="login.html", context={"login_form":form})
+    if request.method == "POST":
+        print(request.POST)
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                messages.info(request, f"You are now logged in as {username}.")
+                return redirect("core:category-view")
+            else:
+                messages.error(request,"Invalid username or password.")
+        else:
+            messages.error(request,"Invalid username or password. Forms")
+    form = AuthenticationForm()
+    return render(request=request, template_name="login.html", context={"login_form":form})

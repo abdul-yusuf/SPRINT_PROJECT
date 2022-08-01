@@ -1,3 +1,4 @@
+from unicodedata import category
 from django.db import models
 from django.db.models.signals import post_save
 from django.conf import settings
@@ -24,8 +25,10 @@ app_name = 'core'
 class UserProfile(models.Model):
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    paystack_customer_id = models.CharField(max_length=50, blank=True, null=True)
-    one_click_purchasing = models.BooleanField(default=False)
+    school_id = models.CharField(max_length=50, blank=True, null=True)
+    is_staff = models.BooleanField(default=False)
+    is_student = models.BooleanField(default=False)
+    is_others = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.username
@@ -33,12 +36,12 @@ class UserProfile(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=50)
   
-    @staticmethod
+    # @staticmethod
     def get_all_categories(self):
-        # return Category.objects.all()
-        return reverse("core:category",kwargs={
-            'category': self.name
+        return reverse("core:category-detail-view", kwargs = {
+            "slug": self.id
         })
+        
   
     def __str__(self):
         return self.name
@@ -156,7 +159,10 @@ class Order(models.Model):
             total -= self.coupon.amount
         return total
     total = property(get_total)
-
+    
+    def get_uncompleted_orders(self):
+        orders = Order.objects.filter(ordered=False)
+        return len(orders)
 
 class Address(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
